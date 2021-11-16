@@ -19,6 +19,7 @@ import {
     CloseIcon,
     HamburgerIcon,
 } from '@chakra-ui/icons'
+import { Link } from 'react-router-dom'
 import React from 'react'
 
 function Navbar(props) {
@@ -74,7 +75,7 @@ function Navbar(props) {
                     </Menu>
                 :
                     <HStack>
-                        <Button display={{base: 'none', md:'inline-flex'}}>Sign In</Button>
+                        <Button display={{base: 'none', md:'inline-flex'}}> <Link to="/signin">Sign In</Link></Button>
                         <Button
                             fontSize={'sm'}
                             fontWeight={600}
