@@ -53,7 +53,7 @@ function Navbar(props) {
                         Planner
                     </Text>
                     <HStack as={'nav'} spacing={4} display={{base: 'none', md: 'flex'}}> 
-                        <NavItem href={"/"} label={"Page"} />
+                        <NavItem href={"/"} label={"Home"} />
                         <NavItem href={"/appointments"} label={"Appointments"} />
                         <NavItem href={"/appointments/create"} label={"Make Appointment"} />
                     </HStack>
@@ -85,9 +85,9 @@ function Navbar(props) {
                             fontSize={'sm'}
                             fontWeight={600}
                             color={'white'}
-                            bg={'blue.500'}
+                            bg={'blue.400'}
                             _hover={{
-                                bg: 'blue.400',
+                                bg: 'blue.300',
                             }}
                         >
                         <Link to="/register">
