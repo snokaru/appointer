@@ -22,6 +22,8 @@ import {
 import { Link } from 'react-router-dom'
 import React from 'react'
 
+import NavItem from '../../components/NavItem'
+
 function Navbar(props) {
     const { isOpen, onToggle } = useDisclosure()
     const isLoggedIn = false;
@@ -35,6 +37,7 @@ function Navbar(props) {
                 borderBottom={1}
                 borderColor={useColorModeValue('gray.200', 'gray.900')}
                 borderStyle={'solid'}
+                minH={'7vh'}
             >
                 <IconButton 
                     onClick={onToggle}
@@ -50,7 +53,9 @@ function Navbar(props) {
                         Planner
                     </Text>
                     <HStack as={'nav'} spacing={4} display={{base: 'none', md: 'flex'}}> 
-                        {props.children}
+                        <NavItem href={"/"} label={"Page"} />
+                        <NavItem href={"/appointments"} label={"Appointments"} />
+                        <NavItem href={"/appointments/create"} label={"Make Appointment"} />
                     </HStack>
                 </HStack>
                 {isLoggedIn ? 
@@ -80,12 +85,14 @@ function Navbar(props) {
                             fontSize={'sm'}
                             fontWeight={600}
                             color={'white'}
-                            bg={'teal.400'}
+                            bg={'blue.500'}
                             _hover={{
-                                bg: 'teal.300',
+                                bg: 'blue.400',
                             }}
                         >
+                        <Link to="/register">
                             Sign Up
+                        </Link>
                         </Button>
                     </HStack>
                 }
@@ -93,7 +100,9 @@ function Navbar(props) {
             {isOpen && 
                 <Box pb={4} display={{ md: 'none' }}>
                     <Stack as={'nav'} spacing={4}>
-                        {props.children}
+                        <NavItem href={"/"} label={"Page"} />
+                        <NavItem href={"/appointments"} label={"Appointments"} />
+                        <NavItem href={"/appointments/create"} label={"Make Appointment"} />
                     </Stack>
                 </Box>
             }
