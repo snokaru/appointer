@@ -1,7 +1,9 @@
 import React from 'react'
-import { Box, IconButton, useBreakpointValue, Heading, List, ListItem, ListIcon, } from '@chakra-ui/react'
+import { Box, IconButton,Button, useBreakpointValue, Heading, List, ListItem, ListIcon, Stack } from '@chakra-ui/react'
 import { ChevronLeftIcon as LeftIcon, ChevronRightIcon as RightIcon } from '@chakra-ui/icons'
 import { GoLocation, GoStar, } from 'react-icons/go'
+import { AiOutlineInstagram } from 'react-icons/ai'
+
 import Slider from 'react-slick'
 
 import ContentBox from '../../components/ContentBox'
@@ -98,12 +100,17 @@ const AppointementDetail = () => {
         <ListIcon as={GoStar} color='blue.400'/>
         4.75 / 5
       </ListItem>
+      <ListItem>
+        <ListIcon as={AiOutlineInstagram} color='blue.400'/>
+        JohnTheBarber
+      </ListItem>
     </List>
     </ContentBox>
     </Box>
         
     )
 }
+
 
 
 export default AppointementDetail
