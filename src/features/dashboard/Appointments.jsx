@@ -17,7 +17,7 @@ export default function Appointments() {
             dateStart: new Date('2021-04-18T11:00:00Z'),
             dateEnd: new Date('2021-04-18T12:00:00Z'),
             service: 'Basic Haircut',
-            price: 50
+            price: 50,
         },
         {
             id: 2,
@@ -26,7 +26,7 @@ export default function Appointments() {
             dateStart: new Date('2021-04-18T11:00:00Z'),
             dateEnd: new Date('2021-04-18T12:00:00Z'),
             service: 'Table of Two',
-            price: 50
+            price: 50,
         },
         {
             id: 3,
@@ -35,7 +35,7 @@ export default function Appointments() {
             dateStart: new Date('2021-04-18T11:00:00Z'),
             dateEnd: new Date('2021-04-18T12:00:00Z'),
             service: 'Basic Consultation',
-            price: 50
+            price: 50,
         },
     ]
 

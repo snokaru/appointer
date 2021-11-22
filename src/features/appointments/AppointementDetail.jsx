@@ -1,16 +1,13 @@
 import React from 'react'
-import ContentBox from '../../components/ContentBox'
-import { Box, IconButton, useBreakpointValue } from '@chakra-ui/react';
-// Here we have used react-icons package for the icons
-import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
-// And react-slick as our Carousel Lib
-import Slider from 'react-slick';
+import { Box, IconButton, useBreakpointValue, Heading, List, ListItem, ListIcon, } from '@chakra-ui/react'
+import { ChevronLeftIcon as LeftIcon, ChevronRightIcon as RightIcon } from '@chakra-ui/icons'
+import { GoLocation, GoStar, } from 'react-icons/go'
+import Slider from 'react-slick'
 
-// Settings for the slider
+import ContentBox from '../../components/ContentBox'
+
 const settings = {
-  dots: true,
-  arrows: false,
-  fade: true,
+  dots: true, arrows: false, fade: true,
   infinite: true,
   autoplay: true,
   speed: 500,
@@ -33,9 +30,9 @@ const AppointementDetail = () => {
 
   // These are the images used in the slide
   const cards = [
-    'https://images.unsplash.com/photo-1612852098516-55d01c75769a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
-    'https://images.unsplash.com/photo-1627875764093-315831ac12f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
-    'https://images.unsplash.com/photo-1571432248690-7fd6980a1ae2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+    'https://images.pexels.com/photos/1570807/pexels-photo-1570807.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/897271/pexels-photo-897271.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/7697401/pexels-photo-7697401.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
   ];
     const appointment = {
         id: 1,
@@ -48,56 +45,40 @@ const AppointementDetail = () => {
     }
 
     return (
-        <ContentBox>
-         <Box
-      position={'relative'}
-      height={'600px'}
-      width={'full'}
-      overflow={'hidden'}>
-      {/* CSS files for react-slick */}
-      <link
-        rel="stylesheet"
-        type="text/css"
-        charSet="UTF-8"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-      />
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-      />
-      {/* Left Icon */}
-      <IconButton
-        aria-label="left-arrow"
-        colorScheme="messenger"
-        borderRadius="full"
-        position="absolute"
-        left={side}
-        top={top}
-        transform={'translate(0%, -50%)'}
-        zIndex={2}
-        onClick={() => slider?.slickPrev()}>
-        <BiLeftArrowAlt />
-      </IconButton>
-      {/* Right Icon */}
-      <IconButton
-        aria-label="right-arrow"
-        colorScheme="messenger"
-        borderRadius="full"
-        position="absolute"
-        right={side}
-        top={top}
-        transform={'translate(0%, -50%)'}
-        zIndex={2}
-        onClick={() => slider?.slickNext()}>
-        <BiRightArrowAlt />
-      </IconButton>
+        <Box minH='90vh' padding={10}>
+          <ContentBox mx={{base: 10, lg: 300}}>
+          <Box
+            width={'full'}
+            overflow={'hidden'}
+            position='relative'
+          >
+          <IconButton
+            aria-label="left-arrow"
+            borderRadius="full"
+            colorScheme="blue"
+            position="absolute"
+            left={side}
+            top={top}
+            transform={'translate(0%, -50%)'}
+            zIndex={2}
+            onClick={() => slider?.slickPrev()} icon={<LeftIcon />} />
+          <IconButton
+            aria-label="right-arrow"
+            colorScheme="blue"
+            borderRadius="full"
+            position="absolute"
+            right={side}
+            top={top}
+            transform={'translate(0%, -50%)'}
+            zIndex={2}
+            onClick={() => slider?.slickPrev()} icon={<RightIcon />} />
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {cards.map((url, index) => (
           <Box
+            borderTopRadius={'lg'}
             key={index}
-            height={'6xl'}
+            height={'lg'}
             position="relative"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
@@ -107,7 +88,19 @@ const AppointementDetail = () => {
         ))}
       </Slider>
     </Box>
-        </ContentBox>
+    <Heading m={3} textAlign='center'>{appointment.name}</Heading>
+    <List padding={10}>
+      <ListItem>
+        <ListIcon as={GoLocation} color='blue.400'/>
+        Str. Tineretului, nr. 14
+      </ListItem>
+      <ListItem>
+        <ListIcon as={GoStar} color='blue.400'/>
+        4.75 / 5
+      </ListItem>
+    </List>
+    </ContentBox>
+    </Box>
         
     )
 }
