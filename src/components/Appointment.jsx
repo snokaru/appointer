@@ -14,8 +14,8 @@ import ContentBox from './ContentBox'
 export default function Appointment({id, name, imageUrl, dateStart, dateEnd, service, price}) {
     return (
         <ContentBox>
-            <Flex direction='row'>
-                <Image objectFit='cover' src={imageUrl} height='250px' width='400px' />
+            <Flex direction={{base: 'column', md: 'row'}}>
+                <Image objectFit='cover' src={imageUrl} height='200px' width={{base: '100%', md: '300px'}} />
                 <Flex flex='1' direction='column' justify='space-between' align='left' p={5}>
                     <Flex direction='row' justify='space-between' align='center'>
                         <Box>
@@ -24,7 +24,7 @@ export default function Appointment({id, name, imageUrl, dateStart, dateEnd, ser
                         </Box>
                         <Heading color='green.400'>${price}</Heading>
                     </Flex>
-                    <Flex direction='row' justify='space-between' align='center'>
+                    <Flex direction={{base: 'column', sm: 'row'}} justify='space-between' align={{base: 'left', sm: 'center'}} mt='10px'>
                         <Box fontSize='sm'>
                             <Text>{dateFormat(dateStart, "dddd, d mmm")}</Text>
                             <Text>{dateFormat(dateStart, "HH:MM")} - {dateFormat(dateEnd, "HH:MM")}</Text>

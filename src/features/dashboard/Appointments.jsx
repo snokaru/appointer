@@ -41,9 +41,9 @@ export default function Appointments() {
 
     console.log('first appointment date:', appointments[0]['dateStart'])
     return (
-        <Box>
-            <VStack align='stretch' spacing={7} m={7} px={60}>
-                <Heading>My Appointments</Heading>
+        <Box minH='90vh'>
+            <VStack align='stretch' spacing={7} m={{'base': 0}} px={{'xl': 60}}>
+                <Heading mt={4}>My Appointments</Heading>
                 { appointments.map(app => <Appointment key={app.id} name={app.name} imageUrl={app.image} dateStart={app.dateStart} 
                 dateEnd={app.dateEnd} service={app.service} price={app.price} />)}
             </VStack>
