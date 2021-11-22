@@ -26,7 +26,7 @@ import NavItem from '../../components/NavItem'
 
 function Navbar(props) {
     const { isOpen, onToggle } = useDisclosure()
-    const isLoggedIn = false;
+    const isLoggedIn = true;
 
     return (
         <Box px={4}>
@@ -50,7 +50,7 @@ function Navbar(props) {
                         fontFamily={'heading'}
                         fontWeight={600}
                     >
-                        Planner
+                        Appointer
                     </Text>
                     <HStack as={'nav'} spacing={4} display={{base: 'none', md: 'flex'}}> 
                         <NavItem href={"/"} label={"Home"} />

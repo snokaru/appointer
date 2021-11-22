@@ -1,24 +1,14 @@
 import {
   Box,
   Heading,
-  Container,
   Text,
   Button,
   Stack,
-  Icon,
-  StackDivider,
-  SimpleGrid,
   Flex,
-  Image,
-  useColorModeValue,
-  createIcon,
 } from '@chakra-ui/react'
-import {
-  IoAnalyticsSharp,
-  IoLogoBitcoin,
-  IoSearchSharp,
-} from 'react-icons/io5'
-import Feature from '../../components/Feature'
+
+import { Link } from 'react-router-dom'
+
 
 export default function Hero() {
   return (
@@ -72,7 +62,9 @@ export default function Hero() {
               _hover={{
                 bg: 'blue.500',
               }}>
+                <Link to="/register">
                   Join Now
+                </Link>
             </Button>
             <Button rounded={'full'} px={6}>
                 Learn More

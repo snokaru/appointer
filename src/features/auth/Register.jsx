@@ -4,7 +4,6 @@ import {
     FormControl,
     FormLabel,
     Input,
-    Checkbox,
     Stack,
     Link,
     Button,
@@ -15,25 +14,18 @@ import {
 
  import { Link as RouterLink } from 'react-router-dom'
 
+ import ContentBox from '../../components/ContentBox'
  
 import React from 'react'
 
-export const Register = () => {
+export default function Register() {
     return (
-    <Flex
-      minH={'90vh'}
-      align={'center'}
-      justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-        <Stack align={'center'}>
-          <Heading fontSize={'4xl'}>Create your account!</Heading>
+    <Flex minH='90vh' align='center' justify='center'>
+      <Stack spacing={8} mx='auto' maxW='lg' py={12} px={6}>
+        <Stack align='center'>
+          <Heading fontSize='4xl'>Create your account!</Heading>
         </Stack>
-        <Box
-          rounded={'lg'}
-          bg={useColorModeValue('white', 'gray.700')}
-          boxShadow={'lg'}
-          p={8}>
+        <ContentBox p={8}>
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email Address</FormLabel>
@@ -48,29 +40,19 @@ export const Register = () => {
               <Input type="password" />
             </FormControl>
             <Stack spacing={10}>
-              <Stack
-                direction={{ base: 'column', sm: 'row' }}
-                align={'start'}
-                justify={'space-between'}>
-                <Link color={'blue.400'} as={Text}>
-                    <RouterLink to="/signin">Already have an account? Log In!</RouterLink>     
+              <Stack direction={{ base: 'column', sm: 'row' }} align='start' justify='space-between'>
+                <Link color='blue.400' as={Text}>
+                    <RouterLink to="/signin">Already have an account? Sign In!</RouterLink>     
                 </Link>
               </Stack>
-              <Button
-                bg={'blue.400'}
-                color={'white'}
-                _hover={{
-                    bg: 'blue.500',
-                }}>
+              <Button bg='blue.400' color='white' _hover={{ bg: 'blue.500' }}>
                 Sign in
               </Button>
             </Stack>
           </Stack>
-        </Box>
+        </ContentBox>
       </Stack>
     </Flex>
  
     );
 }
-
-export default Register
