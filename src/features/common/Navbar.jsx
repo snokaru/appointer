@@ -55,7 +55,7 @@ function Navbar(props) {
                     <HStack as={'nav'} spacing={4} display={{base: 'none', md: 'flex'}}> 
                         <NavItem href={"/"} label={"Home"} />
                         <NavItem href={"/appointments"} label={"Appointments"} />
-                        <NavItem href={"/appointments/create"} label={"Make Appointment"} />
+                        <NavItem href={"/appointments/create"} label={"Appointment Detail"} />
                     </HStack>
                 </HStack>
                 {isLoggedIn ? 

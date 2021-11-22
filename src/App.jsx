@@ -8,6 +8,8 @@ import Dashboard from './features/dashboard/Dashboard'
 import LogIn from './features/auth/LogIn'
 import Register from './features/auth/Register'
 
+import AppointementDetail from './features/appointments/AppointementDetail'
+
 
 function App() {
   const isLoggedIn = true;
@@ -21,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={isLoggedIn ? <Dashboard /> : <Hero />} />
           <Route path="appointments/create" />
-          <Route path="appointments" />
+          <Route path="appointments" element={<AppointementDetail/>} />
           <Route path="signin" element={<LogIn /> }/>
           <Route path="register" element={<Register /> }/>
         </Routes>
