@@ -5,7 +5,7 @@ import Appointments from './Appointments'
 
 export default function Dashboard() {
     return ( 
-        <Box padding={2} bgColor={'gray.50'}> 
+        <Box padding={2}> 
             <Appointments />
         </Box>
     )

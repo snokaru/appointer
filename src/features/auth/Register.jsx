@@ -17,6 +17,8 @@ import {
  import ContentBox from '../../components/ContentBox'
  
 import React from 'react'
+import { useBaseColor, usePrimaryAltColor, usePrimaryColor } from "../../hooks/colors";
+import { useDeprecatedAnimatedState } from "framer-motion";
 
 export default function Register() {
     return (
@@ -41,11 +43,11 @@ export default function Register() {
             </FormControl>
             <Stack spacing={10}>
               <Stack direction={{ base: 'column', sm: 'row' }} align='start' justify='space-between'>
-                <Link color='blue.400' as={Text}>
+                <Link color={usePrimaryColor()}as={Text}>
                     <RouterLink to="/signin">Already have an account? Sign In!</RouterLink>     
                 </Link>
               </Stack>
-              <Button bg='blue.400' color='white' _hover={{ bg: 'blue.500' }}>
+              <Button bg={usePrimaryColor()} color={useBaseColor()} _hover={{ bg: usePrimaryAltColor() }}>
                 Sign in
               </Button>
             </Stack>

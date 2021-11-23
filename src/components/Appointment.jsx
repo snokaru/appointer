@@ -10,6 +10,7 @@ import {
 import dateFormat from 'dateformat'
 
 import ContentBox from './ContentBox'
+import { useBaseColor, useNeutralColor, usePrimaryAltColor, usePrimaryColor, useSuccessColor } from '../hooks/colors'
 
 export default function Appointment({id, name, imageUrl, dateStart, dateEnd, service, price}) {
     return (
@@ -20,16 +21,16 @@ export default function Appointment({id, name, imageUrl, dateStart, dateEnd, ser
                     <Flex direction='row' justify='space-between' align='center'>
                         <Box>
                             <Heading size='lg'>{service}</Heading>
-                            <Text size='md' color='gray.400'>at <Link color='blue.400'>{name}</Link></Text>
+                            <Link color={usePrimaryColor()}>{name}</Link>
                         </Box>
-                        <Heading color='green.400'>${price}</Heading>
+                        <Heading color={useSuccessColor()}>${price}</Heading>
                     </Flex>
                     <Flex direction={{base: 'column', sm: 'row'}} justify='space-between' align={{base: 'left', sm: 'center'}} mt='10px'>
                         <Box fontSize='sm'>
                             <Text>{dateFormat(dateStart, "dddd, d mmm")}</Text>
                             <Text>{dateFormat(dateStart, "HH:MM")} - {dateFormat(dateEnd, "HH:MM")}</Text>
                         </Box>
-                        <Button colorScheme='blue'>Details</Button>
+                        <Button color={useBaseColor()} bg={usePrimaryColor()} _hover={{bg: usePrimaryAltColor()}}>Details</Button>
                     </Flex>
                 </Flex>
             </Flex>

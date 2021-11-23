@@ -19,6 +19,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import ContentBox from '../../components/ContentBox'
  
 import React from 'react'
+import { usePrimaryAltColor, usePrimaryColor, useBaseColor } from "../../hooks/colors";
 
 export default function LogIn() {
     return (
@@ -38,12 +39,12 @@ export default function LogIn() {
             <Stack spacing={10}>
               <Stack direction={{ base: 'column', sm: 'row' }} align='start' justify='space-between'>
                 <Checkbox>Remember me</Checkbox>
-                <Link color='blue.400'>Forgot password?</Link>
+                <Link color={usePrimaryColor()}>Forgot password?</Link>
               </Stack>
-              <Link color='blue.400' as={Text} mt={0}>
+              <Link color={usePrimaryColor()} as={Text} mt={0}>
                 <RouterLink to="/register">Don't have an account? Sign Up!</RouterLink>
               </Link>
-              <Button color='white' bg='blue.400' _hover={{ bg: 'blue.300' }}>
+              <Button color={useBaseColor()} bg={usePrimaryColor()} _hover={{ bg: usePrimaryAltColor() }}>
                 Sign in
               </Button>
             </Stack>

@@ -13,29 +13,35 @@ import {
     Text,
     useDisclosure,
     useColorModeValue,
+    useColorMode,
     Stack,
+    Collapse,
 } from '@chakra-ui/react'
 import {
     CloseIcon,
     HamburgerIcon,
+    MoonIcon,
+    SunIcon,
 } from '@chakra-ui/icons'
 import { Link } from 'react-router-dom'
 import React from 'react'
 
 import NavItem from '../../components/NavItem'
+import { useNeutralColor, usePrimaryColor, usePrimaryAltColor, useBaseColor } from '../../hooks/colors'
 
 function Navbar(props) {
     const { isOpen, onToggle } = useDisclosure()
-    const isLoggedIn = true;
+    const { colorMode, toggleColorMode } = useColorMode()
+    const isLoggedIn = false;
 
     return (
-        <Box px={4}>
+        <Box px={4} bg={useBaseColor()}>
             <Flex 
                 h={16}
                 alignItems={'center'}
                 justifyContent={'space-between'}
                 borderBottom={1}
-                borderColor={useColorModeValue('gray.200', 'gray.900')}
+                borderColor={useNeutralColor()}
                 borderStyle={'solid'}
                 minH={'7vh'}
             >
@@ -50,7 +56,7 @@ function Navbar(props) {
                         fontFamily={'heading'}
                         fontWeight={600}
                     >
-                        Appointer
+                        Planner
                     </Text>
                     <HStack as={'nav'} spacing={4} display={{base: 'none', md: 'flex'}}> 
                         <NavItem href={"/"} label={"Home"} />
@@ -58,6 +64,10 @@ function Navbar(props) {
                         <NavItem href={"/appointments/create"} label={"Appointment Detail"} />
                     </HStack>
                 </HStack>
+                <Box display='flex'> 
+                <Button onClick={toggleColorMode} mr={5}>
+                    {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                </Button>
                 {isLoggedIn ? 
                     <Menu>
                         <MenuButton
@@ -84,11 +94,9 @@ function Navbar(props) {
                         <Button
                             fontSize={'sm'}
                             fontWeight={600}
-                            color={'white'}
-                            bg={'blue.400'}
-                            _hover={{
-                                bg: 'blue.300',
-                            }}
+                            color={useBaseColor()}
+                            bg={usePrimaryColor()}
+                            _hover={{bg: usePrimaryAltColor()}}
                         >
                         <Link to="/register">
                             Sign Up
@@ -96,8 +104,9 @@ function Navbar(props) {
                         </Button>
                     </HStack>
                 }
+                </Box>
             </Flex>
-            {isOpen && 
+            <Collapse in={isOpen} animateOpacity>
                 <Box pb={4} display={{ md: 'none' }}>
                     <Stack as={'nav'} spacing={4}>
                         <NavItem href={"/"} label={"Page"} />
@@ -105,7 +114,7 @@ function Navbar(props) {
                         <NavItem href={"/appointments/create"} label={"Make Appointment"} />
                     </Stack>
                 </Box>
-            }
+            </Collapse>
         </Box>
     )
 }
