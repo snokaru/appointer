@@ -26,7 +26,7 @@ import NavItem from '../../components/NavItem'
 
 function Navbar(props) {
     const { isOpen, onToggle } = useDisclosure()
-    const isLoggedIn = true;
+    const isLoggedIn = false;
 
     return (
         <Box px={4}>

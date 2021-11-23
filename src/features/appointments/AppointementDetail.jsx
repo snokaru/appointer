@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, IconButton,Button, useBreakpointValue, Heading, List, ListItem, ListIcon, Stack } from '@chakra-ui/react'
+import { Box, IconButton, useBreakpointValue, Heading, List, ListItem, ListIcon, Button, Flex } from '@chakra-ui/react'
 import { ChevronLeftIcon as LeftIcon, ChevronRightIcon as RightIcon } from '@chakra-ui/icons'
 import { GoLocation, GoStar, } from 'react-icons/go'
 import { AiOutlineInstagram } from 'react-icons/ai'
@@ -91,6 +91,7 @@ const AppointementDetail = () => {
       </Slider>
     </Box>
     <Heading m={3} textAlign='center'>{appointment.name}</Heading>
+    <Flex direction='row' justify='space-between' align='flex-end' m={10}>
     <List padding={10}>
       <ListItem>
         <ListIcon as={GoLocation} color='blue.400'/>
@@ -105,6 +106,14 @@ const AppointementDetail = () => {
         JohnTheBarber
       </ListItem>
     </List>
+    <Button  mb={10} fontSize={'sm'}
+            fontWeight={600}
+            color={'white'}
+            bg={'blue.400'}
+            _hover={{
+                bg: 'blue.300',
+            }}>Book Now</Button>
+    </Flex>
     </ContentBox>
     </Box>
         
