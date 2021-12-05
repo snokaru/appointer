@@ -29,10 +29,10 @@ import React from 'react'
 import NavItem from '../../components/NavItem'
 import { useNeutralColor, usePrimaryColor, usePrimaryAltColor, useBaseColor } from '../../hooks/colors'
 
-function Navbar(props) {
+function Navbar() {
     const { isOpen, onToggle } = useDisclosure()
     const { colorMode, toggleColorMode } = useColorMode()
-    const isLoggedIn = false;
+    const isLoggedIn = true;
 
     return (
         <Box px={4} bg={useBaseColor()}>
