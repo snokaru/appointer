@@ -26,13 +26,14 @@ import {
 import { Link } from 'react-router-dom'
 import React from 'react'
 
+import { useCurrentUserQuery } from '../../app/services/auth'
 import NavItem from '../../components/NavItem'
 import { useNeutralColor, usePrimaryColor, usePrimaryAltColor, useBaseColor } from '../../hooks/colors'
 
 function Navbar() {
     const { isOpen, onToggle } = useDisclosure()
     const { colorMode, toggleColorMode } = useColorMode()
-    const isLoggedIn = true;
+    const { user, isLoading } = useCurrentUserQuery();
 
     return (
         <Box px={4} bg={useBaseColor()}>
@@ -68,7 +69,7 @@ function Navbar() {
                 <Button onClick={toggleColorMode} mr={5}>
                     {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                 </Button>
-                {isLoggedIn ? 
+                {user ? 
                     <Menu>
                         <MenuButton
                             as={Button}
