@@ -26,7 +26,7 @@ class CurrentUser(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
-        user = get_user_model().objects.filter(email=request.user)
+        user = get_user_model().objects.get(email=request.user)
         serialized_user = UserSerializer(user)
 
         return JsonResponse(serialized_user.data)
