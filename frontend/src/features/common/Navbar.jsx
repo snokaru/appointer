@@ -12,7 +12,6 @@ import {
     Avatar,
     Text,
     useDisclosure,
-    useColorModeValue,
     useColorMode,
     Stack,
     Collapse,
@@ -26,14 +25,16 @@ import {
 import { Link } from 'react-router-dom'
 import React from 'react'
 
-import { useCurrentUserQuery } from '../../app/services/auth'
 import NavItem from '../../components/NavItem'
 import { useNeutralColor, usePrimaryColor, usePrimaryAltColor, useBaseColor } from '../../hooks/colors'
+
+import { useCurrentUser, useLogout } from '../auth/context'
 
 function Navbar() {
     const { isOpen, onToggle } = useDisclosure()
     const { colorMode, toggleColorMode } = useColorMode()
-    const { user, isLoading } = useCurrentUserQuery();
+    const user = useCurrentUser()
+    const logout = useLogout()
 
     return (
         <Box px={4} bg={useBaseColor()}>
@@ -86,7 +87,7 @@ function Navbar() {
                             <MenuItem>My Appointments</MenuItem>
                             <MenuItem>Profile</MenuItem>
                             <MenuDivider />
-                            <MenuItem>Settings</MenuItem>
+                            <MenuItem onClick={logout}>Logout</MenuItem>
                         </MenuList>
                     </Menu>
                 :

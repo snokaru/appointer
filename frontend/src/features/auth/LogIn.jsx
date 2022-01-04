@@ -1,6 +1,6 @@
+import React, { useState } from 'react'
 import { 
     Flex,
-    Box,
     FormControl,
     FormLabel,
     Input,
@@ -10,38 +10,27 @@ import {
     Button,
     Heading,
     Text,
-    Container,
     useToast,
-    useColorModeValue,
 } from "@chakra-ui/react"
-
-import { useDispatch } from 'react-redux'
-import { setCredentials } from './slice'
-import { useLoginMutation, useCurrentUserQuery } from '../../app/services/auth'
-
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import ContentBox from '../../components/ContentBox'
- 
-import React, { useState } from 'react'
 import { usePrimaryAltColor, usePrimaryColor, useBaseColor } from "../../hooks/colors";
+import { useLogin } from './context'
 
 export default function LogIn() {
-    const dispatch = useDispatch()
-    const [login, { isLoading }] = useLoginMutation()
     const navigate = useNavigate();
     const toast = useToast();
     const [formState, setFormState] = useState({
         email: '',
         password: '',
     })
-    
+
+    const login = useLogin()
+
     const handleChange = ({
         target: { name, value },
     }) => setFormState((prev) => ({...prev, [name]: value }))
-
-    console.log(formState);
-
 
     return (
     <Flex minH='90vh' align='center' justify='center'>
@@ -71,20 +60,17 @@ export default function LogIn() {
                 _hover={{ bg: usePrimaryAltColor() }}
                 onClick={async () => {
                     try {
-                        const user = await login(formState).unwrap()
-                        dispatch(setCredentials(user))
-                        navigate('/') 
-                    } catch (err) {
-                        console.log(err)
+                        await login(formState.email, formState.password)
+                        navigate("/")
+                    } catch(e) {
                         toast({
-                        status: 'error',
-                        title: 'Error',
-                        description: 'An error occured!',
-                        isClosable: true,
-                    })
+                            title: "Error",
+                            description: "An error occured when trying to log you in!",
+                            isClosable: true,
+                            status: 'error',
+                        })
                     }
                 }}
-                isLoading={isLoading}
               >
                 Sign in
               </Button>
@@ -93,6 +79,5 @@ export default function LogIn() {
         </ContentBox>
       </Stack>
     </Flex>
- 
     );
 }
