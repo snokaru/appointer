@@ -30,3 +30,4 @@ class CurrentUser(APIView):
         serialized_user = UserSerializer(user)
 
         return JsonResponse(serialized_user.data)
+

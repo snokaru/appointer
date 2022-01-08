@@ -2,28 +2,13 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 
-# custom choice field to work with display names
-class ChoiceField(serializers.ChoiceField):
-
-    def to_representation(self, data):
-        if data not in self.choices.keys():
-            self.fail('invalid_choice', input=data)
-        else:
-            return self.choices[data]
-
-    def to_internal_value(self, data):
-        for key, value in self.choices.items():
-            if value == data:
-                 return key
-        self.fail('invalid_choice', input=data)
-
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         write_only=True,
         required=True,
         style={'input_type': 'password', 'placeholder': 'Password'}
     )
-    type = ChoiceField(choices=get_user_model().USER_TYPES)
+    type = serializers.ChoiceField(choices=get_user_model().USER_TYPES)
 
     class Meta:
         model = get_user_model()
