@@ -1,6 +1,5 @@
 import { 
     Flex,
-    Box,
     FormControl,
     FormLabel,
     Input,
@@ -9,7 +8,6 @@ import {
     Button,
     Heading,
     Text,
-    useColorModeValue,
  } from "@chakra-ui/react"
 
  import { Link as RouterLink } from 'react-router-dom'
@@ -18,7 +16,6 @@ import {
  
 import React from 'react'
 import { useBaseColor, usePrimaryAltColor, usePrimaryColor } from "../../hooks/colors";
-import { useDeprecatedAnimatedState } from "framer-motion";
 
 export default function Register() {
     return (
