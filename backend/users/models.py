@@ -5,8 +5,8 @@ from django.db import models
 
 class User(AbstractUser):
     email = models.EmailField("email", unique=True)
+    username = models.CharField("username", max_length=150, unique=False, blank=True)
     
-
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username", "password",]
 
