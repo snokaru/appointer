@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import generics, mixins
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
-from django.http import JsonResponse
+from rest_framework.response import Response
 from .serializers import UserSerializer
 
 class UserList(mixins.ListModelMixin,
@@ -27,7 +27,7 @@ class CurrentUser(APIView):
 
     def get(self, request):
         user = get_user_model().objects.get(email=request.user)
-        serialized_user = UserSerializer(user)
 
-        return JsonResponse(serialized_user.data)
+        serialized_user = UserSerializer(user)
+        return Response(serialized_user.data)
 
