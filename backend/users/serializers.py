@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 
-from .models import User
+User = get_user_model()
 
 class CustomChoiceField(serializers.ChoiceField):
 
@@ -25,13 +25,14 @@ class UserSerializer(serializers.ModelSerializer):
         required=True,
         style={'input_type': 'password', 'placeholder': 'Password'}
     )
-    type = CustomChoiceField(choices=User.UserType.choices)
 
     class Meta:
         model = get_user_model()
-        fields = ['id', 'email', 'password', 'type']
+        fields = ['id', 'email', 'password', ]
 
     def create(self, validated_data):
         validated_data['password'] = make_password(validated_data['password'])
         return super(UserSerializer, self).create(validated_data)
+
+
 

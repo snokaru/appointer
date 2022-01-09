@@ -4,13 +4,18 @@ from django.db import models
 # Create your models here.
 
 class User(AbstractUser):
-    class UserType(models.IntegerChoices):
-        USER = 1, 'user'
-        BUSSINESS = 2, 'bussiness'
-
     email = models.EmailField("email", unique=True)
-    type = models.PositiveSmallIntegerField(choices=UserType.choices, default=UserType.USER) 
+    
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username", "password",]
+
+class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    first_name = models.CharField(max_length=30, blank=False)
+    last_name = models.CharField(max_length=30, blank=False)
+    
+class Bussiness(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    name = models.CharField(max_length=100, blank=False) 
 
