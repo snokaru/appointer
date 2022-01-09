@@ -9,7 +9,7 @@ class User(AbstractUser):
         BUSSINESS = 2, 'bussiness'
 
     email = models.EmailField("email", unique=True)
-    type = models.PositiveSmallIntegerField(choices=UserType.choices) 
+    type = models.PositiveSmallIntegerField(choices=UserType.choices, default=UserType.USER) 
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username", "password",]

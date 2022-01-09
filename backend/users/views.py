@@ -1,32 +1,24 @@
 from django.contrib.auth import get_user_model
-from rest_framework import generics, mixins
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.decorators import action
+from rest_framework import viewsets
+
 from .serializers import UserSerializer
+from .permissions import IsSelfOrReadOnly
 
-class UserList(mixins.ListModelMixin,
-               mixins.CreateModelMixin,
-               generics.GenericAPIView):
 
-    queryset = get_user_model().objects.all()
+User = get_user_model()
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated, IsSelfOrReadOnly]
 
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
-
-class UserDetail(generics.RetrieveAPIView):
-    queryset = get_user_model().objects.all()
-    serializer_class = UserSerializer
-
-class CurrentUser(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get(self, request):
-        user = get_user_model().objects.get(email=request.user)
+    @action(detail=False)
+    def me(self, request):
+        user = User.objects.get(email=request.user)
 
         serialized_user = UserSerializer(user)
         return Response(serialized_user.data)
