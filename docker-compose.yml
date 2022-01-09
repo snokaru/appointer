@@ -19,7 +19,6 @@ services:
       - ./frontend:/app
     ports:
       - 3000:3000
-    network_mode: "host"
   db:
     image: postgres:11
     volumes:
