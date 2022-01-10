@@ -11,6 +11,8 @@ import { useCurrentUser } from './features/auth/context'
 
 import AppointementDetail from './features/appointments/AppointementDetail'
 import { useNeutralColor } from './hooks/colors'
+import BussinessListPage from './features/businesses/BusinessListPage'
+import BusinessDetailPage from './features/businesses/BusinessDetailPage'
 
 function App() {
   const user = useCurrentUser(); 
@@ -21,9 +23,10 @@ function App() {
       <Box bg={useNeutralColor()}>
         <Routes>
           <Route path="/" element={user ? <Dashboard /> : <Hero />} />
-          <Route path="appointments" element={<AppointementDetail/>} />
           <Route path="signin" element={<LogIn /> }/>
           <Route path="register" element={<Register /> }/>
+          <Route path="businesses" element={<BussinessListPage />} />
+          <Route path="businesses/:businessId" element={<BusinessDetailPage />} />
         </Routes>
       </Box>
     </Box>

@@ -28,7 +28,7 @@ class CustomerSerializer(serializers.ModelSerializer):
         fields =  '__all__'
 
     def create(self, validated_data):
-        user_data = validated_data.get('user')
+        user_data = validated_data.pop('user')
         user = UserSerializer.create(UserSerializer(), validated_data=user_data)
         customer = Customer.objects.create(user=user, **validated_data)
         return customer
@@ -45,4 +45,11 @@ class BussinessSerializer(serializers.ModelSerializer):
         user = UserSerializer.create(UserSerializer(), validated_data=user_data)
         bussiness = Bussiness.objects.create(user=user, **validated_data)
         return bussiness
+
+
+class UserDisplaySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ['id', 'email', 'customer', 'bussiness']
+        depth = 1
 

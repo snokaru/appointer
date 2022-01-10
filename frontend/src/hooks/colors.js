@@ -31,3 +31,7 @@ export function useNeutralComplementColor() {
 export function useSuccessColor() {
     return useColorModeValue('green.400', 'green.300')
 }
+
+export function useSuccessColorAlt() {
+    return useColorModeValue('green.300', 'green.400')
+}

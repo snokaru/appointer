@@ -73,6 +73,7 @@ export function AuthProvider({children}) {
                 const user = await authService.getCurrentUser()
                 dispatch(setUser(user))
             } catch (e) {
+                authService.updateTokens(null, null)
                 console.log(e)
             }
         }
