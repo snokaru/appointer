@@ -18,4 +18,5 @@ class Customer(models.Model):
 class Bussiness(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     name = models.CharField(max_length=100, blank=False) 
-
+    description = models.CharField(max_length=500, blank=False)
+    image_url = models.URLField()

@@ -68,6 +68,7 @@ export function AuthProvider({children}) {
         const accessToken = localStorage.getItem('access-token')
         const refreshToken = localStorage.getItem('refresh-token')
         if (accessToken && refreshToken) {
+            console.log('we have both tokens')
             try {
                 authService.updateTokens(accessToken, refreshToken) 
                 const user = await authService.getCurrentUser()
@@ -80,6 +81,7 @@ export function AuthProvider({children}) {
     }
 
     useEffect(() => {
+        console.log('does this actually run')
         loginWithLocalStorage()
     }, [])
 

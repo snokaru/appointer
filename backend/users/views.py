@@ -8,7 +8,7 @@ from rest_framework import generics
 from rest_framework.views import APIView
 
 from users.serializers import BussinessSerializer, CustomerSerializer, UserDisplaySerializer, UserSerializer
-from users.permissions import IsBusiness, IsCustomerAndCreateOnly, IsCustomer, IsOwner, IsCustomerOwner, IsBussinessOwner, IsBussinessOwnerAppointment, IsCustomerOwnerAppointment, NoCreate, ReadOnly, CreateOnly
+from users.permissions import IsUserOwner, IsBusiness, IsCustomerAndCreateOnly, IsCustomer, IsOwner, IsCustomerOwner, IsBussinessOwner, IsBussinessOwnerAppointment, IsCustomerOwnerAppointment, NoCreate, ReadOnly, CreateOnly
 from users.models import Customer, Bussiness
 
 from appointments.models import AppointmentType, Appointment
@@ -41,7 +41,7 @@ class CustomerViewSet(mixins.CreateModelMixin,
 
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
-    permission_classes = [IsAuthenticated|CreateOnly, IsOwner|ReadOnly, IsAuthenticated&NoCreate]
+    permission_classes = [IsAuthenticated|CreateOnly, IsOwner|ReadOnly]
 
 
 class BussinessViewSet(mixins.CreateModelMixin,
@@ -51,7 +51,7 @@ class BussinessViewSet(mixins.CreateModelMixin,
 
     queryset = Bussiness.objects.all()
     serializer_class = BussinessSerializer
-    permission_classes = [IsAuthenticated|CreateOnly, IsOwner|ReadOnly, IsAuthenticated&NoCreate]
+    permission_classes = [IsAuthenticated|CreateOnly, IsOwner|ReadOnly]
 
 
 class AppointmentTypeDetail(generics.RetrieveAPIView):
@@ -152,6 +152,28 @@ class CustomerAppointmentList(generics.ListAPIView):
 
     def get_queryset(self):
         return Appointment.objects.filter(customer=self.kwargs.get('customer'))
+        
+
+class UserAppointmentList(generics.ListAPIView):
+    permission_classes = [IsAuthenticated, IsUserOwner]
+    serializer_class = AppointmentSerializer
+
+    def get_queryset(self):
+        if hasattr(self.request.user, 'customer'):
+            return Appointment.objects.filter(customer=self.kwargs.get('id'))
+        elif hasattr(self.request.user, 'bussiness'):
+            return Appointment.objects.filter(type__bussiness=self.kwargs.get('id'))
+
+class UserAppointmentDetail(generics.RetrieveAPIView, generics.UpdateAPIView, generics.DestroyAPIView):
+    permission_classes = [IsAuthenticated, IsUserOwner]
+    serializer_class = AppointmentSerializer
+
+    def get_queryset(self):
+        if hasattr(self.request.user, 'customer'):
+            return Appointment.objects.filter(customer=self.kwargs.get('id'))
+        elif hasattr(self.request.user, 'bussiness'):
+            return Appointment.objects.filter(type__bussiness=self.kwargs.get('id'))
+
 
 
 class CustomerAppointmentDetail(generics.RetrieveAPIView):
@@ -160,4 +182,3 @@ class CustomerAppointmentDetail(generics.RetrieveAPIView):
 
     def get_queryset(self):
         return Appointment.objects.filter(customer=self.kwargs.get('customer'))
-

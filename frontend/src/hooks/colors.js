@@ -35,3 +35,11 @@ export function useSuccessColor() {
 export function useSuccessColorAlt() {
     return useColorModeValue('green.300', 'green.400')
 }
+
+export function useDangerColor() {
+    return useColorModeValue('red.500', 'red.400')
+}
+
+export function useDangerColorAlt() {
+    return useColorModeValue('red.400', 'red.500')
+}

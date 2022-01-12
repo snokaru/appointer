@@ -20,3 +20,8 @@ export async function createNewAppointment(businessId, appointmentTypeId, data) 
   const response = await axios.post(`/api/businesses/${businessId}/appointment-types/${appointmentTypeId}/appointments`, data)
   return response.data
 }
+
+export async function createNewAppointmentType(businessId, data) {
+  const response = await axios.post(`/api/businesses/${businessId}/appointment-types`, data)
+  return response.data
+}

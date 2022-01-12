@@ -39,7 +39,6 @@ export default function Appointments() {
         },
     ]
 
-    console.log('first appointment date:', appointments[0]['dateStart'])
     return (
         <Box minH='90vh'>
             <VStack align='stretch' spacing={7} m={{'base': 0}} px={{'xl': 60}}>

@@ -9,10 +9,10 @@ import LogIn from './features/auth/LogIn'
 import Register from './features/auth/Register'
 import { useCurrentUser } from './features/auth/context'
 
-import AppointementDetail from './features/appointments/AppointementDetail'
 import { useNeutralColor } from './hooks/colors'
 import BussinessListPage from './features/businesses/BusinessListPage'
 import BusinessDetailPage from './features/businesses/BusinessDetailPage'
+import AppointmentListPage from './features/appointments/AppointmentListPage'
 
 function App() {
   const user = useCurrentUser(); 
@@ -22,7 +22,7 @@ function App() {
       <Navbar />
       <Box bg={useNeutralColor()}>
         <Routes>
-          <Route path="/" element={user ? <Dashboard /> : <Hero />} />
+          <Route path="/" element={user ? <AppointmentListPage /> : <Hero />} />
           <Route path="signin" element={<LogIn /> }/>
           <Route path="register" element={<Register /> }/>
           <Route path="businesses" element={<BussinessListPage />} />

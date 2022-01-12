@@ -25,13 +25,13 @@ import { useCurrentUser } from '../features/auth/context'
 
 export default function AppointmentType({id, name, description, duration, price, businessId}) {
     const { isOpen, onOpen, onClose } = useDisclosure(id)
+    const newAppointmentMutation = useNewAppointmentMutation(businessId, id)
+    const toast = useToast()
+    const user = useCurrentUser();
     const [formState, setFormState] = useState({
         time_start: '',
         time_end: '',
     })
-    const newAppointmentMutation = useNewAppointmentMutation(businessId, id)
-    const toast = useToast()
-    const user = useCurrentUser();
 
     const handleChange = ({
         target: { name, value },

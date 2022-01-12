@@ -11,16 +11,16 @@ import { useNavigate } from 'react-router-dom'
 import { usePrimaryColor, usePrimaryAltColor, useBaseColor } from "../../hooks/colors"
 import { useBusinessListQuery } from './hooks'
 import Business from '../../components/Business'
+import BigSpinner from '../../components/BigSpinner'
 
 export default function BussinessListPage() {
   const { isLoading, data } = useBusinessListQuery()
+  console.log(data)
 
   return (
       <Box minH='90vh'>
       {isLoading ? 
-        <Flex>
-          <Spinner/>
-        </Flex> 
+        <BigSpinner/>
       : 
         <VStack align='stretch' spacing={7} m={{'base': 0}} px={{'xl': 60}}>
             <Heading mt={4}>Businesses</Heading>

@@ -62,8 +62,7 @@ function Navbar() {
                     </Text>
                     <HStack as={'nav'} spacing={4} display={{base: 'none', md: 'flex'}}> 
                         <NavItem href={"/"} label={"Home"} />
-                        <NavItem href={"/businesses"} label={"Businesses"} />
-                        <NavItem href={"/appointments"} label={"My Appointments"} />
+                        {user && <NavItem href={"/businesses"} label={"Businesses"} /> }
                     </HStack>
                 </HStack>
                 <Box display='flex'> 

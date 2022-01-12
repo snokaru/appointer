@@ -10,10 +10,9 @@ class AppointmentTypeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class AppointmentSerializer(serializers.ModelSerializer):
-    type = serializers.ReadOnlyField(source='type.id')
-    customer = serializers.ReadOnlyField(source='customer.id')
 
     class Meta:
         model = Appointment
         fields = '__all__'
+        depth = 2
 

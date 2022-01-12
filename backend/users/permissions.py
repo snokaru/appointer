@@ -50,6 +50,11 @@ class IsCustomerOwner(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.user and hasattr(request.user, 'customer') and request.user.id == view.kwargs.get('customer')
 
+class IsUserOwner(permissions.BasePermission):
+    def has_permission(self, request, view):
+        print(request.user)
+        return request.user and request.user.id == view.kwargs.get('id')
+
 
 class IsCustomerOwnerAppointment(permissions.BasePermission):
     def has_permission(self, request, view):

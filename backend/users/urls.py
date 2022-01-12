@@ -9,6 +9,8 @@ router.register(r'businesses', views.BussinessViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('users/<int:id>/appointments', views.UserAppointmentList.as_view()),
+    path('users/<int:id>/appointments/<int:pk>', views.UserAppointmentDetail.as_view()),
 
     path('businesses/<int:bussiness>/appointment-types', views.BussinessAppointmentTypeList.as_view()),
     path('businesses/<int:bussiness>/appointment-types/<int:pk>', views.BussinessAppointmentTypeDetail.as_view()),

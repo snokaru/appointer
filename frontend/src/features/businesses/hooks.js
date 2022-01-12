@@ -1,5 +1,5 @@
-import { fetchBusinesses, fetchBusinessById, fetchBusinessAppointmentTypes, createNewAppointment } from './services'
-import { useQuery, useMutation } from 'react-query'
+import { fetchBusinesses, fetchBusinessById, fetchBusinessAppointmentTypes, createNewAppointment, createNewAppointmentType } from './services'
+import { useQuery, useMutation, useQueryClient } from 'react-query'
 import BusinessDetailPage from './BusinessDetailPage'
 
 export function useBusinessListQuery() {
@@ -16,4 +16,14 @@ export function useBusinessAppointmentTypesListQuery(businessId) {
 
 export function useNewAppointmentMutation(businessId, appointmentTypeId) {
   return useMutation(data => createNewAppointment(businessId, appointmentTypeId, data))
+}
+
+export function useNewAppointmentTypeMutation(businessId) {
+  const queryClient = useQueryClient();
+
+  return useMutation(data => createNewAppointmentType(businessId, data), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('business')
+    }
+  })
 }

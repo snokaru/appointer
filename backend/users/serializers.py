@@ -52,4 +52,3 @@ class UserDisplaySerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = ['id', 'email', 'customer', 'bussiness']
         depth = 1
-
